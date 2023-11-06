@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.Random;
 public class TrabajoPractio9 {
     public static void main(String[] args) {
         /*1. Diseñar un programa que lea y guarde marcas de Autos en un ArrayList de tipo
@@ -65,5 +67,84 @@ public class TrabajoPractio9 {
         Factura factura1 = new Factura("123", "26/10/2023","Lucas Cabrera");
         factura1.AgregarArticulo("Computadora",100000,2);
         factura1.imprimirFactura();
+
+        /*4. Escriba una aplicación que:
+        a) lea 20 números decimales ingresados por teclado por el usuario y los coloque en un ArrayList.
+        b) determine y muestre el mayor de los números en el arreglo
+        c) determine y muestre el menor de los números del arreglo calcule y muestre el rango (diferencia entre el mayor y el menor) de los elementos en el arreglo
+*/
+        ArrayList<Double> veinteNum = new ArrayList<>();
+        double numeros;
+        for(int i=0; i<20; i++){
+            System.out.println("Ingrese el " + (i+1) + "º" +  " numero decimal: ");
+            numeros = teclado.nextDouble();
+            veinteNum.add(numeros);
+        }
+        for (double numero : veinteNum) {
+            System.out.println(numero);
+        }
+        System.out.println("El mayor numero en el arreglo es: " + Collections.max(veinteNum));
+        System.out.println("El menor numero en el arreglo es: " + Collections.min(veinteNum));
+        double rango = Collections.max(veinteNum) - Collections.min(veinteNum);
+        System.out.println("El rango del Array es: " + rango);
+
+
+
+        /*5. Escriba una aplicación para almacenar en un ArrayList<Integer>
+        aleatoriamente 20 números enteros positivos pares del 1 al 100, de los
+        cuales se desea saber:
+        a) su promedio aritmético
+        b) cuántos de los números son iguales al promedio aritmético
+        c) cuántos de los números son mayores que el promedio aritmético
+        d) cuántos de los números son menores que el promedio aritmético*/
+
+        ArrayList<Integer> numerosPares = new ArrayList<>();
+        Random random = new Random();
+
+        int contador = 0;
+        while (contador < 20) {
+            int numero = random.nextInt(50) * 2 + 2;
+            if (!numerosPares.contains(numero)) {
+                numerosPares.add(numero);
+                contador++;
+            }
+        }
+
+        System.out.println("Números enteros pares generados aleatoriamente y almacenados en el ArrayList:");
+        for (int num : numerosPares) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println();
+
+        int suma = 0;
+        for (int num2 : numerosPares) {
+            suma+= num2;
+        }
+        double promedio = (double) suma / numerosPares.size();
+        System.out.println("El promedio aritmetico de los 20 numeros pares es: " + promedio);
+        System.out.println();
+        int contador2 = 0;
+        for (int num3: numerosPares) {
+            if(num3 == promedio){
+                contador2++;
+            }
+        }
+        System.out.println("La cantidad de numeros iguales al promedio es: " + contador2);
+        int contador3 = 0;
+        for (int num3: numerosPares) {
+            if(num3 > promedio){
+                contador3++;
+            }
+        }
+        System.out.println("La cantidad de numeros mayores al promedio es: " + contador3);
+
+        int contador4 = 0;
+        for (int num3: numerosPares) {
+            if(num3 < promedio){
+                contador4++;
+            }
+        }
+        System.out.println("La cantidad de numeros menores al promedio es: " + contador4);
     }
 }
